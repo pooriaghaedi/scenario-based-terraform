@@ -1,23 +1,21 @@
-locals {
-  function_name = "example"
-}
+
 
 resource "aws_lambda_function" "example" {
   filename = "${local.function_name}.zip"
   function_name = "${local.function_name}"
   role          = aws_iam_role.lambda_cw_logs_role.arn
-  timeout       = 6
-  memory_size   = 128
+  timeout       = local.lambda_memory_size
+  memory_size   = local.lambda_timeout
   handler       = "main"
 
-
-  runtime = "go1.x"
+  runtime = local.lambda_runtime
 # uncomment following lines if you need an ENV variable
 #   environment {
 #     variables = {
 #       VARIABLE = "Value"
 #     }
 #   }
+
   depends_on = [
     aws_iam_role_policy_attachment.lambda_logs,
     aws_cloudwatch_log_group.my_lambda_logs,
