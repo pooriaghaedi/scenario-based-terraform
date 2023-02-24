@@ -6,20 +6,14 @@ resource "aws_cloudwatch_event_rule" "schedule" {
 
 resource "aws_cloudwatch_event_target" "example" {
   arn  = aws_lambda_function.example.arn
-  rule = aws_cloudwatch_event_rule.schedule.arn
+  rule = aws_cloudwatch_event_rule.schedule.name
 
-  input_transformer {
-    input_paths = {
-      name = "$.detail.name",
-      age   = "$.detail.age",
-    }
-    input_template = <<EOF
+    input = <<EOF
 {
-    "What is your name?": <name>,
-    "How old are you?": <age>
+    "What is your name?": "Jack",
+    "How old are you?": 28
 }
 EOF
-  }
 }
 
 data "aws_iam_policy_document" "example" {
