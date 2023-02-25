@@ -24,7 +24,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   enabled             = true
   is_ipv6_enabled     = false
   comment             = "example Website"
-  aliases             = "${local.subdomain}.${local.TLD}"
+  aliases             = ["${local.subdomain}.${local.TLD}"]
   default_root_object = "index.html"
   price_class = "PriceClass_All"
   origin {
