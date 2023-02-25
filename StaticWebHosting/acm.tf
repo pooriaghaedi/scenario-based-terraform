@@ -1,4 +1,5 @@
 resource "aws_acm_certificate" "example" {
+  provider = aws.useast1
   domain_name = local.TLD
   validation_method = "DNS"
   subject_alternative_names = ["*.${local.TLD}"]
