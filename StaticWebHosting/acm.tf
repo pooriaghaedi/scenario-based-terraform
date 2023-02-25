@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "example" {
-  domain_name = local.tld
+  domain_name = local.TLD
   validation_method = "DNS"
   subject_alternative_names = ["*.${local.TLD}"]
 

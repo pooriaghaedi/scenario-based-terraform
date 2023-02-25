@@ -4,7 +4,7 @@ resource "aws_cloudfront_origin_access_identity" "websiteOAI" {
 
 resource "aws_cloudfront_cache_policy" "cf_cache_policy" {
   name        = "${local.name}-cache-policy"
-  comment     = "${local.tld} ${local.name} Cache Policy"
+  comment     = "${local.TLD} ${local.name} Cache Policy"
 
   parameters_in_cache_key_and_forwarded_to_origin {
     enable_accept_encoding_gzip = true
