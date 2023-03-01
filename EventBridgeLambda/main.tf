@@ -12,4 +12,5 @@ locals {
   lambda_runtime = "go1.x"
   lambda_timeout = 6
   lambda_memory_size = 128
+  lambda_reserved_concurrency = 100
 }

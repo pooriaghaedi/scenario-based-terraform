@@ -8,6 +8,7 @@ resource "aws_lambda_function" "example" {
   memory_size   = local.lambda_timeout
   handler       = "main"
 
+  reserved_concurrent_executions = local.lambda_reserved_concurrency
   runtime = local.lambda_runtime
 # uncomment following lines if you need an ENV variable
 #   environment {
@@ -16,6 +17,9 @@ resource "aws_lambda_function" "example" {
 #     }
 #   }
 
+ tracing_config {
+   mode = "Active"
+}
   depends_on = [
     aws_iam_role_policy_attachment.lambda_logs,
     aws_cloudwatch_log_group.my_lambda_logs,
