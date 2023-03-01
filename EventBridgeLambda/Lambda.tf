@@ -1,5 +1,3 @@
-
-
 resource "aws_lambda_function" "example" {
   filename = "${local.function_name}.zip"
   function_name = "${local.function_name}"
