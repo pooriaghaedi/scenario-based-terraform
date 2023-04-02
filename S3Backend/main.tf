@@ -11,23 +11,32 @@ resource "aws_kms_alias" "key-alias" {
 
 resource "aws_s3_bucket" "terraform-state" {
  bucket = var.bucket_Name
- acl    = "private"
+}
 
- versioning {
-   enabled = true
- }
+resource "aws_s3_bucket_versioning" "tf_versioning" {
+  bucket = aws_s3_bucket.terraform-state.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
 
- server_side_encryption_configuration {
-   rule {
+resource "aws_s3_bucket_server_side_encryption_configuration" "tf_SSE" {
+  bucket = aws_s3_bucket.terraform-state.id
+
+  rule {
      apply_server_side_encryption_by_default {
        kms_master_key_id = aws_kms_key.terraform-bucket-key.arn
        sse_algorithm     = "aws:kms"
-     }
-   }
- }
+    }
+  }
 }
 
-resource "aws_s3_bucket_public_access_block" "block" {
+resource "aws_s3_bucket_acl" "tf_bucket_acl" {
+  bucket = aws_s3_bucket.terraform-state.id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_public_access_block" "tfaccessBlock" {
  bucket = aws_s3_bucket.terraform-state.id
 
  block_public_acls       = true
