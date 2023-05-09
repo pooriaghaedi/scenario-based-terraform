@@ -2,7 +2,7 @@
 
 This repository contains the necessary terraform scripts to deploy a Kubernetes cluster on AWS using the Elastic Kubernetes Service (EKS). It also deploys the following components: 
 
-1. Karpenet
+1. Karpenter
 2. External-DNS
 3. External-Secrets
 4. ALB Ingress Controller 
