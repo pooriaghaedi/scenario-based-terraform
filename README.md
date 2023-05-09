@@ -1,2 +1,2 @@
 # Scenario Based Terraform
-Real life Terraform Scenarios Building AWS Infrsatructure
+Real World Terraform Scenarios Building AWS Infrsatructure
